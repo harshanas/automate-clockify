@@ -6,7 +6,7 @@ const tagService = new TagService();
 
 const app = express();
 app.use(bodyParser.json());
-const port = 3000;
+const port = process.env.PORT;
 
 app.post('/api/v1/webhook', async (req,res) =>{
     const task = req.body;
