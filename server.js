@@ -1,12 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const { TagService } = require('./services/tag');
+const tagService = new TagService();
 
 const app = express();
 app.use(bodyParser.json());
 const port = 3000;
 
-app.post('/api/v1/webhook', (req,res) =>{    
+app.post('/api/v1/webhook', async (req,res) =>{
+    const task = req.body;
+    await tagService.setTags(task);
+    
     res.send("Recieved");
 })
 
