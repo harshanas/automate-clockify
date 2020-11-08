@@ -5,9 +5,9 @@ const clockify = new Clockify();
 
 class TagService{
     async setTags(task){
-
         const clockifyData = helper.getClockifyData(task);
-        if (clockifyData.projectId){
+        
+        if (clockifyData.projectId && clockifyData.tags.length === 0){
             const tags = await db.getClockifyTags(clockifyData.projectId);
             if (tags.length > 0){
                 clockify.setTags(clockifyData, tags);
